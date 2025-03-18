@@ -4,13 +4,31 @@ import { writeContacts } from "../utils/writeContacts.js";
 
 const generateContacts = async (number) => {
   const contacts = await readContacts();
-  console.log("Contacts:", contacts);
   for (let i = 0; i < number; i++) {
     const contact = createFakeContact();
-    console.log("Generated contact:", contact, typeof contact);
     contacts.push(contact);
-  };
+
+    Progress(i, number);
+  }
   await writeContacts(contacts);
+
 };
 
-generateContacts(5);
+generateContacts(20000);
+
+
+const Progress = (i , number) => {
+  if (number >= 10000) {
+    if (i % 10000 === 0 && i !== 0) {
+      console.log(`▶️  Generated ${i / 1000}k / ${number / 1000}k contacts and still running...`);
+    } else if (i === number - 1) {
+      console.log(`✅ Generated ${(i + 1) / 1000}k / ${number / 1000}k contacts and finished!`);
+    }
+  } else if (number < 10000) {
+    if (i % 1000 === 0 && i !== 0) {
+      console.log(`▶️  Generated ${i} / ${number} contacts and still running...`);
+    } else if (i === number - 1) {
+      console.log(`✅ Generated ${(i + 1)} / ${number} contacts and finished!`);
+    }
+  }
+};
