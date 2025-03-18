@@ -1,11 +1,16 @@
-// Bu kütüphanede şu anda ilgilendiğimiz yöntemler şunlardır:
+import { readContacts } from "../utils/readContacts.js";
+import { createFakeContact } from "../utils/createFakeContact.js";
+import { writeContacts } from "../utils/writeContacts.js";
 
-// faker.string.uuid() benzersiz bir kimlik oluşturmak için;
-// faker.person.fullName() tam isimler oluşturmak için;
-// faker.phone.number() telefon numaraları oluşturmak için;
-// faker.internet.email() e-posta adresleri oluşturmak için;
-// faker.person.jobTitle() meslek adları oluşturmak için.
-
-const generateContacts = async (number) => {};
+const generateContacts = async (number) => {
+  const contacts = await readContacts();
+  console.log("Contacts:", contacts);
+  for (let i = 0; i < number; i++) {
+    const contact = createFakeContact();
+    console.log("Generated contact:", contact, typeof contact);
+    contacts.push(contact);
+  };
+  await writeContacts(contacts);
+};
 
 generateContacts(5);
