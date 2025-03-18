@@ -13,10 +13,11 @@
     "remove-all": "node src/scripts/removeAllContacts.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Atilla Göğüslü <atillagoguslu@gmail.com>",
+  "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.2.0",
+    "@faker-js/faker": "^9.6.0",
     "eslint": "^9.2.0",
     "globals": "^15.1.0"
   }
